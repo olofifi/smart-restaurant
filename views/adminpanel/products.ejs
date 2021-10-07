@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristorane | <%= title %></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="alert alert-warning" role="alert" style="margin-top:50px">
+                This is admin panel, authorized access only.
+              </div>
+              <%- include('../partials/alerts.ejs') %>
+            <div class="row">
+                <% items.forEach(function(product) { %>
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow" >
+                          <div class="card-body">
+                            <p class="card-text"><%= product.productName %></p>
+                            <p class="card-text"><%= product.productDesc %></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                <button type="button" class="btn-danger"><a href='/adminpanel/products/remove/<%= product._id %>' style="color: white">Remove</a> </button>
+                                <button type="button" class="btn-warning"><a href='/adminpanel/products/edit/<%= product._id %>' style="color: black">Edit</a> </button>
+                              </div>
+                              <small class="text-muted">£<%= product.productPrice %></small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                <% }) %>
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                      <div class="card-body">
+                        <p class="card-text">Add new product to the menu.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn-success"><a href='/adminpanel/products/addproduct' style="color: white">Add</a> </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+</div>
+<%- include('../partials/footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristorane | <%= title %></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body { padding-top:50px; }
+    </style>
+</head>
+<body>
+<%- include('../partials/nav.ejs') %>
+    <center>
+        <div class="container" style="min-height: 500px; background-color: rgb(241, 237, 237); margin-top: 50px; width: 73%">
+ <%- include('../partials/alerts.ejs') %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Product</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+      <% if(session.cart){%>
+        <% let x = 1; %>
+              <tr>
+               <% items.forEach(function(item) { %>
+                <% if(item.qty>0){ %>
+                <th scope="row"><%= x %></th>
+                <td><%= item.item.productName %></td>
+                <td><%= item.qty %>
+                    <a href='/cart/addone/<%= item.item._id %>' style="color: white"><button type="button" class="btn-success"style="color: white; width: 40px; float: right">+</button></a>
+                    <a href='/cart/removeone/<%= item.item._id %>' style="color: white"><button type="button" class="btn-danger"style="color: white; width: 40px; float: right">-</button></a> 
+                </td>
+                <td>£ <%= item.qty * item.item.productPrice %></td>
+              </tr>
+              <% x++; %>
+              <% } %>
+              <% }); %>
+              <% if(cart.totalQty<=0) { %>
+              <div class="alert alert-dark" role="alert" style="margin-top:50px">
+                Your cart is empty!!!
+              </div>
+              <% } %>
+            </tbody>
+          </table>
+          <h4>Total price: £<%= session.cart.totalPrice %></h4>
+          <% if(session.cart.totalPrice>0) { %>
+          <a href='/cart/payment' style="color: white"><button type="button" class="btn-success">Proceed to payment</button></a>
+          <% } %>
+          <% } %>
+
+        </div>
+    </center>
+</body>
+<%- include('../partials/footer.ejs') %>
+</html>

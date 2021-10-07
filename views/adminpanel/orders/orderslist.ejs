@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristorane | <%= title %></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <%- include('../../partials/nav.ejs') %>
+    <div class="album py-5 bg-light">
+        <div class="container">
+          <h2>Get orders from:</h2>
+          <form action="/adminpanel/orderslist/getorders" method="post">
+          <div class="row" style="margin-bottom: 50px; margin-left: 0.5%">
+          <input class="form-control form-control-lg" name="day" id="day" placeholder="day" style="width: 7%">
+          <input class="form-control form-control-lg" name="month" id="month" placeholder="month" style="width:8.5%"> 
+          <input class="form-control form-control-lg" name="year" id="year" placeholder="year" style="width:7%"> 
+          <button type="submit" class="btn btn-primary">GET</button>
+          </form>
+          </div>
+          <%- include('../../partials/alerts.ejs') %>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Order ID</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Payment</th>
+                  <th scope="col">Table</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Time</th>
+                </tr>
+              </thead>
+              <tbody>
+            <% let x = 1; %>
+            <% let sales = 0; %>
+                  <tr>
+                   <% items.forEach(function(item) { %>
+                    <th scope="row"><%= x %></th>
+                    <td><%= item._id %></td>
+                    <td><%= item.orderStatus %></td>
+                    <td><%= item.paymentDone %></td>
+                    <td><%= item.table %></td>
+                    <td>£<%= item.totalPrice %></td>
+                    <% sales += item.totalPrice %>
+                    <td><%= item.date.getHours() %>:<%= item.date.getMinutes() %>:<%= item.date.getSeconds() %>
+                    <a href='/adminpanel/orderslist/<%=item._id%>' style="color: white"><button type="button" class="btn-primary" style="float:right">See Details</button></a>
+                    </td>
+                  </tr>
+                  <% x++; %>
+                  <% }); %>
+                </tbody>
+              </table>
+              <h3 style="float:right">Total sales: £<%= sales %></h3>
+           
+        </div>
+</div>
+<%- include('../../partials/footer.ejs') %>
+</body>
+</html>

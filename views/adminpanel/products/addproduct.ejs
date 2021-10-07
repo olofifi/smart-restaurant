@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristorane | <%= title %></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body { padding-top:50px; }
+    </style>
+</head>
+<body>
+<%- include('../../partials/nav.ejs') %>
+<%- include('../../partials/alerts.ejs') %>
+<div class="container">
+<center>
+    <div class="alert alert-warning" role="alert" style="margin-top:50px">
+        To add new product, complete the form below.
+      </div>
+<div class="col-md-8">
+    <form action="/adminpanel/products/addproduct" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="name-label" class="form-label">Name</label>
+            <input type="text" class="form-control" name="Name" id="productname">
+        </div>
+        <div class="mb-3">
+            <label for="description-label" class="form-label">Description</label>
+            <input type="text" class="form-control" name="Description" id="productdesc">
+        </div>
+        <div class="mb-3">
+            <label for="price-label" class="form-label">Price</label>
+            <input type="number" class="form-control" name="Price" id="productprice">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlSelect1">Type</label>
+            <select class="form-control" name="Type" id="type">
+              <option>kitchen</option>
+              <option>bar</option>
+              <option>floor</option>
+            </select>
+          </div>
+        <div class="mb-3">
+            <label for="image-label" class="form-label">Image</label>
+            <input type="file" class="form-control" name="image" id="image">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add new product</button>
+    </form>
+</div>
+</center>
+</div>
+</body>
+<%- include('../../partials/footer.ejs') %>
+</html>

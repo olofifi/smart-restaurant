@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristorane | <%= title %></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <%- include('../../partials/nav.ejs') %>
+    <div class="album py-5 bg-light">
+        <div class="container">
+          <%- include('../../partials/alerts.ejs') %>
+            <table class="table">
+              <thead>
+                <h2>Order <%=item._id%> details:</h2>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Product ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+            <% let x = 1; %>
+                  <tr>
+                   <% item.products.forEach(function(product) { %>
+                    <th scope="row"><%= x %></th>
+                    <td><%= product._id %></td>
+                    <td><%= product.item.productName %></td>
+                    <td>£<%= product.item.productPrice %></td>
+                    <td><%= product.qty %></td>
+                    <td>£<%= product.item.productPrice * product.qty %></td>
+                  </tr>
+                  <% x++; %>
+                  <% }); %>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><h2>£<%= item.totalPrice%></h2></td>
+                </tbody>
+              </table>
+            <div class="row" style="margin-top: 25px;">
+                <h3><b>Table: </b><%= item.table%></h3>
+            </div>
+            <div class="row" style="margin-top: 25px;">
+                <h3><b>Order Status: </b><%= item.orderStatus%></h3>
+            </div>
+            <div class="row">
+               <h3><b>Payment status: </b><% if(item.paymentDone==true) {%> <h3 style="color:rgb(77, 196, 77)">PAID</h3><% } else { %> <h3 style="color: red">UNPAID</h3> <% } %></h3>
+            </div>
+           <div class="row" style="margin-top: 50px;">
+            <a href='/adminpanel/orderslist/<%=item._id%>/cancel' style="color: white"><button type="button" class="btn-danger" style="float:right">Cancel order</button></a>
+            <a href='/adminpanel/orderslist/<%=item._id%>/refund' style="color: white"><button type="button" class="btn-success" style="float:right">Refund</button></a>
+           </div>
+        </div>
+</div>
+<%- include('../../partials/footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristorane | <%= title %></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body { padding-top:50px; }
+    </style>
+</head>
+<body>
+    <%- include('../partials/nav.ejs') %>
+        <center>
+            <div class="cointainer" style="width:50%; margin-top:50px; margin-bottom:50px">
+                <%- include('../partials/alerts.ejs') %>
+                    <div class="alert alert-warning" role="alert" style="margin-top:50px">
+                        Welcome to admin panel!
+                    </div>
+                        <a href='/adminpanel/products' style="color: white"><button class="btn btn-primary">Products</button></a>
+                        <a href='/adminpanel/orderslist' style="color: white"><button class="btn btn-primary">Orders</button></a>
+                        <a href='/adminpanel/admins' style="color: white"><button class="btn btn-primary">Admins</button></a>
+                        <a href='/adminpanel/logout' style="color: white"><button class="btn btn-danger">Log out</button></a>
+                    <div class="row" style="margin-left:36%; margin-top:50px;"><h2>Service panels:</h2></div>
+                    <a href='/adminpanel/kitchen-service' style="color: white"><button class="btn btn-primary">Kitchen</button></a>
+                    <a href='/adminpanel/floor-service' style="color: white"><button class="btn btn-primary">Floor</button></a>
+                    <div class="row">
+
+                    </div>
+            </div>
+        </center>
+
+<%- include('../partials/footer.ejs') %>
+</body>
+</html>

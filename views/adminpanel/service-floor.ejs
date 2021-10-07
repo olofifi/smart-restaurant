@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristorane | <%= title %></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="album py-5 bg-light">
+        <div class="container">
+              <%- include('../partials/alerts.ejs') %>
+            <div class="row">
+                <% items.forEach(function(order) { %>
+                    <% if(order.orderStatus==='sent' || 'preparing'){ %>
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow" onclick="location.href='/adminpanel/floor-service/click/<%=order._id %>'">
+                        <button type="button" <% if(order.orderStatus==='completed'){ %>
+                            style="background-color:#7FFFD4"
+                            <% } %>
+                            <% if(order.orderStatus==='preparing'){ %>
+                                style="background-color:#DC143C"
+                                <% } %>
+                            >
+                        <h4><b><%=order._id%></b></h4>
+                        <h5>Table: <%= order.table%></h5>
+                        Status: <%=order.orderStatus%>
+                          <div class="card-body">
+                            <% order.products.forEach(function(product) { %>
+                                <div class="row">
+                                    <% if(product.item.productType==='kitchen'){ %>
+                                        <h5><%= product.item.productName %> x <%=product.qty %></h5>
+                                    <% } %>
+                                </div>
+                            <% }) %>
+
+                          </div>
+                       
+                        </div>
+                    </button>
+                    </div>
+                      <% } %>
+                <% }) %>
+            </div>
+
+        </div>
+</div>
+<%- include('../partials/footer.ejs') %>
+</body>
+</html>

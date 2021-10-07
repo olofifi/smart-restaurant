@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristorane | <%= title %></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body { padding-top:50px; }
+    </style>
+</head>
+<body>
+<%- include('../partials/nav.ejs') %>
+        <center>
+            <div class="cointainer" style="width:50%; margin-top:50px; margin-bottom:50px">
+              <div class="alert alert-warning" role="alert" style="margin-top:50px">
+                This is an administration panel! Authorised access only!
+              </div>
+              <%- include('../partials/alerts.ejs') %>
+              <form action="/adminpanel" method="post">
+                <div class="mb-3">
+                  <label for="email-label" class="form-label">Email address</label>
+                  <input type="email" class="form-control" name="email" id="email">
+                </div>
+                <div class="mb-3">
+                  <label for="password-label" class="form-label">Password</label>
+                  <input type="password" class="form-control" name="password" id="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Log in</button>
+              </form>
+            </div>
+        </center>
+
+<%- include('../partials/footer.ejs') %>
+</body>
+</html>

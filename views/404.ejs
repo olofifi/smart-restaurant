@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristorane | <%= title %></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body { padding-top:50px; }
+    </style>
+</head>
+<body>
+<%- include('./partials/nav.ejs') %>
+
+    <div class="container" style="min-height: 500px; background-color: rgb(241, 237, 237); margin-top: 50px;">
+        <div class="alert alert-danger" role="alert" style="margin-top: 100px">
+        <center>
+            <p>Page not found!</p> 
+            <a href="/" >Return to home page.</a>
+        </center>
+          </div>
+    </div>
+<%- include('./partials/footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<div class="container" style="height: fit-content; background-color: rgb(241, 237, 237); margin-top: 50px; width: 73%">
+    <div class="row">
+    <% items.forEach(function(product) { %>
+        <div class="col-md-4" >
+            <div class="card mb-4 box-shadow" style="height:575px">
+                <img src="data:image/<%=product.img.contentType%>;base64,
+                <%=product.img.data.toString('base64')%>" style="max-height: 400px;">
+              <div class="card-body" style="bottom: 0; position: absolute">
+                <p class="card-text"><%= product.productName %></p>
+                <p class="card-text"><%= product.productDesc %></p>
+                  <div class="btn-group">
+                    <a href='/menu/add/<%= product.id %>'><button type="button" class="btn-success">Add to cart </button></a>
+                  </div>
+                  <medium class="text-muted" style="float:right">£<%= product.productPrice %></medium>
+              </div>
+            </div>
+          </div>
+    <% }) %>
+    </div>
+</div> 
+
+

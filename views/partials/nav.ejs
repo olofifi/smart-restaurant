@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="container-fluid" style="height:120px; background-color: darkcyan;">
+        <h1 style="padding-top:17px; text-align: center">Ristorante</h1>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightblue;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/"><h3>Home</h3></a>
+            <a class="nav-item nav-link" href="/menu"><h3>Menu</h3></a>
+            <a class="nav-item nav-link" href="/cart"><h3>Cart</h3></a>
+            <% if(session && session.cart){%>
+            <span class="badge badge-light"style="float:left; height: 20px; background-color: #F08080"><%= session.cart.totalQty %></span>
+            <% }%>
+          </div>
+        </div>
+      </nav>

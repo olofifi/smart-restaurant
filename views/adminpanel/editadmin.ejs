@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristorane | <%= title %></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body { padding-top:50px; }
+    </style>
+</head>
+<body>
+<%- include('../partials/nav.ejs') %>
+<center>
+<div class="container">
+<%- include('../partials/alerts.ejs') %>
+<div class="col-md-4">
+    <div class="card mb-4 box-shadow"style="margin-top: 50px" >
+      <div class="card-body">
+        <p class="card-text">ID: <%= admin.adminId %></p>
+        <p class="card-text">Name: <%= admin.name %></p>
+        <p class="card-text">Email: <%= admin.email %></p>
+        <p class="card-text">Phone: <%= admin.phone %></p>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+          </div>
+          <small class="text-muted">Since: <%= admin.date %></small>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="col-md-8">
+    <form action="/adminpanel/admins/edit/<%=admin._id %>" method="post">
+        <div class="mb-3">
+            <label for="name-label" class="form-label">Id</label>
+            <input type="text" class="form-control" name="Id" id="id">
+        </div>
+        <div class="mb-3">
+            <label for="description-label" class="form-label">Name</label>
+            <input type="text" class="form-control" name="Name" id="name">
+        </div>
+        <div class="mb-3">
+            <label for="price-label" class="form-label">Email</label>
+            <input type="email" class="form-control" name="Email" id="email">
+        </div>
+        <div class="mb-3">
+          <label for="price-label" class="form-label">Phone</label>
+          <input type="phone" class="form-control" name="Phone" id="phone">
+      </div>
+
+        <button type="submit" class="btn btn-primary">Edit information</button>
+    </form>
+</div>
+</div>
+</center>
+</body>
+<%- include('../partials/footer.ejs') %>
+</html>

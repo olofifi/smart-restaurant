@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ristorane | <%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body { padding-top:50px; }
+    </style>
+</head>
+<body>
+<%- include('../partials/nav.ejs') %>
+    <center>
+        <div class="container" style="min-height: 500px; background-color: rgb(241, 237, 237); margin-top: 50px; width: 73%">
+ <%- include('../partials/alerts.ejs') %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Product</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+      <% if(session.cart){%>
+        <% let x = 1; %>
+              <tr>
+               <% items.forEach(function(item) { %>
+                <% if(item.qty>0){ %>
+                <th scope="row"><%= x %></th>
+                <td><%= item.item.productName %></td>
+                <td><%= item.qty %>
+                </td>
+                <td>£ <%= item.qty * item.item.productPrice %></td>
+              </tr>
+              <% x++; %>
+              <% }%>
+              <% }); %>
+            </tbody>
+          </table>
+          <h4>Total price: £<%= session.cart.totalPrice %></h4>
+            <form style="margin-top:100px;padding-bottom:30px;"> 
+                <span>Cardholder's name:</span> <input class="form-control form-control-lg" placeholder="John Smith" style="width:40%"> 
+                <span>Card Number:</span> <input class="form-control form-control-lg" placeholder="1234 1234 1234 1234" style="width:40%">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto"><span>Expiry date:</span> <input class="form-control form-control-lg" placeholder="YY/MM" style="width:40%;"> </div>
+                    <div class="col-md-auto"><span>CVV:</span> <input class="form-control form-control-lg" id="cvv" placeholder="123" style="width:40%;"> </div>
+                </div>
+                <a href='/cart/payment/succeed' style="color: white"><button type="button" class="btn-success" style="width: 300px; margin-top: 50px">PAY</button></a>
+            </form>
+          <% } %>
+        </div>
+    </center>
+<%- include('../partials/footer.ejs') %>
+</body>
+</html>
